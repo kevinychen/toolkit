@@ -19,6 +19,6 @@ if [ -e ~/.vimrc ]; then
 fi
 ln .vimrc ~/.vimrc
 if [ ! -e ~/.vim/comments.vim ]; then
-    ln ~/repos/toolkit/.vim/comments.vim ~/.vim/comments.vim
+    ln -s ~/repos/toolkit/.vim ~/.vim
 fi
 
