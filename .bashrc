@@ -59,6 +59,10 @@ alias gshs='git show --stat'
 alias gt='git tag'
 alias gx='git branch -D'
 
+alias gw='./gradlew'
+alias gwe='.gradlew eclipse'
+alias gwc='./gradlew compileJava'
+
 alias dc='docker-compose'
 alias dcp='docker cp'
 alias di='docker images'
