@@ -38,3 +38,7 @@ if [ ! -e ~/repos/snap2 ]; then
     ./gradlew downloadFiles
 fi
 
+# Setup fzf (Fuzzy Search in terminal)
+brew install fzf
+yes | $(brew --prefix)/opt/fzf/install
+

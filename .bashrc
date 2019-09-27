@@ -204,6 +204,8 @@ bind -m vi-insert "\C-e.":end-of-line
 bind -m vi-insert "\C-w.":backward-kill-word
 bind -m vi-insert "\C-u.":kill-line
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 if [ -a ~/.bashrc.mine ]
 then
     source ~/.bashrc.mine
