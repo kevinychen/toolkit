@@ -26,3 +26,7 @@ if [ ! -e ~/.vim/bundle/Vundle.vim ]; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 
+# Setup Eclipse
+mkdir -p ~/Documents/eclipse-workspaces/main/.metadata/.plugins
+cp -r org.eclipse.core.runtime ~/Documents/eclipse-workspaces/main/.metadata/.plugins/
+
