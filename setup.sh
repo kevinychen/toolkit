@@ -30,3 +30,11 @@ fi
 mkdir -p ~/Documents/eclipse-workspaces/main/.metadata/.plugins
 cp -r org.eclipse.core.runtime ~/Documents/eclipse-workspaces/main/.metadata/.plugins/
 
+# Setup snap2
+if [ ! -e ~/repos/snap2 ]; then
+    cd ~/repos
+    git clone git@github.com:kevinychen/snap2.git
+    cd snap2
+    ./gradlew downloadFiles
+fi
+
