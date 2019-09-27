@@ -19,6 +19,7 @@ alias vb='vim ~/.bashrc'
 alias vd='vimdiff'
 alias grep='grep --color=auto'
 alias load='source ~/.bashrc'
+alias maketags='ctags -R .'
 
 alias ga='git add'
 alias gam='git commit --amend'

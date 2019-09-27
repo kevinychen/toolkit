@@ -14,6 +14,16 @@ if [ -e ~/.vimrc ]; then
     mv ~/.vimrc ~/.vimrc.bak
 fi
 ln .vimrc ~/.vimrc
+if [ -e ~/.gitconfig ]; then
+    rm -f ~/.gitconfig.bak
+    mv ~/.gitconfig ~/.gitconfig.bak
+fi
+ln .gitconfig ~/.gitconfig
+if [ -e ~/.gitignore ]; then
+    rm -f ~/.gitignore.bak
+    mv ~/.gitignore ~/.gitignore.bak
+fi
+ln .gitignore ~/.gitignore
 if [ -e ~/.vim ]; then
     rm -rf ~/.vim.bak
     mv ~/.vim ~/.vim.bak
@@ -22,13 +32,13 @@ cp -r .vim ~/.vim
 
 # Setup Vundle
 mkdir ~/.vim/bundle
-if [ ! -e ~/.vim/bundle/Vundle.vim ]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-fi
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Setup Eclipse
-mkdir -p ~/Documents/eclipse-workspaces/main/.metadata/.plugins
-cp -r org.eclipse.core.runtime ~/Documents/eclipse-workspaces/main/.metadata/.plugins/
+if [ ! -e ~/Documents/eclipse-workspaces/main ]; then
+    mkdir -p ~/Documents/eclipse-workspaces/main/.metadata/.plugins
+    cp -r org.eclipse.core.runtime ~/Documents/eclipse-workspaces/main/.metadata/.plugins/
+fi
 
 # Setup snap2
 if [ ! -e ~/repos/snap2 ]; then
@@ -38,7 +48,14 @@ if [ ! -e ~/repos/snap2 ]; then
     ./gradlew downloadFiles
 fi
 
+# Setup ctags
+if ! command -v ctags > /dev/null; then
+    brew install ctags
+fi
+
 # Setup fzf (Fuzzy Search in terminal)
-brew install fzf
-yes | $(brew --prefix)/opt/fzf/install
+if ! command -v fzf > /dev/null; then
+    brew install fzf
+    yes | $(brew --prefix)/opt/fzf/install
+fi
 

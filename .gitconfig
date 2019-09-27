@@ -1,0 +1,5 @@
+[user]
+	name = Kevin Chen
+	email = kyc2915@gmail.com
+[core]
+	excludesfile = ~/.gitignore
