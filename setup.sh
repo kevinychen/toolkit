@@ -30,9 +30,17 @@ if [ -e ~/.vim ]; then
 fi
 cp -r .vim ~/.vim
 
+# Install Vim with +clipboard
+if ! vim --version | grep "+clipboard" > /dev/null; then
+    brew install vim
+    # refresh Bash cache
+    hash -r
+fi
+
 # Setup Vundle
 mkdir ~/.vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
 
 # Setup Eclipse
 if [ ! -e ~/Documents/eclipse-workspaces/main ]; then

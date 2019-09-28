@@ -26,6 +26,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-fugitive'
+Plugin 'junegunn/fzf.vim'
 call vundle#end()
 
 source ~/.vim/comments.vim
@@ -41,6 +42,10 @@ au BufReadPost,BufNewFile *.html colorscheme monokai
 au BufReadPost,BufNewFile *.java colorscheme monokai
 au BufReadPost,BufNewFile *.gradle set filetype=groovy
 
+set rtp+=/usr/local/opt/fzf
+set clipboard=unnamed,unnamedplus
+set indentkeys-=<:><CR>
+
 nnoremap k gk
 nnoremap j gj
 nnoremap gk k
@@ -48,14 +53,13 @@ nnoremap gj j
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 map m <Plug>(easymotion-s)
 nnoremap -A ggVG
+" -B is hex dump
 nnoremap -B :%!xxd
-nnoremap -C :w! ~/.dummy<CR>
-vmap -C :w! ~/.dummy<CR>
 " -c used for comments.vim
 nnoremap -d o<Esc>k
 nnoremap -e :e<CR>
+nnoremap -f :vsp<CR>:FZF<CR>
 nnoremap -H :browse oldfiles<CR>
-nnoremap -i :setlocal indentkeys-=<:><CR>
 nnoremap -J ggVG:!python -m json.tool<CR>
 nnoremap -n :next<CR>
 nnoremap -N :set nopaste<CR>
@@ -70,12 +74,8 @@ nnoremap -S :syntax sync fromstart
 nnoremap -u O<Esc>j
 nnoremap -U YpVr=
 nnoremap -v :vsp
-nnoremap -V :r ~/.dummy<CR>
-vmap -V :r ~/.dummy<CR>
 nnoremap -w :w<CR>
 " -x used for comments.vim
-nnoremap -y "*y
-vmap -y "*y
 nnoremap -` /```<CR>
 nnoremap -2 :set shiftwidth=2<CR>
 nnoremap -4 :set shiftwidth=4<CR>
