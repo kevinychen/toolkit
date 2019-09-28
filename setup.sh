@@ -72,3 +72,6 @@ if ! command -v ag > /dev/null; then
     brew install the_silver_searcher
 fi
 
+# Set desktop background
+osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$HOME/repos/toolkit/oranges.jpg\""
+
