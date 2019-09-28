@@ -215,6 +215,8 @@ bind -m vi-insert "\C-w.":backward-kill-word
 bind -m vi-insert "\C-u.":kill-line
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_DEFAULT_COMMAND='ag -l --path-to-ignore ~/.gitignore'
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
 if [ -a ~/.bashrc.mine ]
 then

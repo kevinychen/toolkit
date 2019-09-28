@@ -67,3 +67,8 @@ if ! command -v fzf > /dev/null; then
     yes | $(brew --prefix)/opt/fzf/install
 fi
 
+# Install ag, the silver searcher
+if ! command -v ag > /dev/null; then
+    brew install the_silver_searcher
+fi
+

@@ -1,2 +1,4 @@
+*.class
 *.swp
 .apt_generated_tests
+build
