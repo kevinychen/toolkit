@@ -48,7 +48,6 @@ nnoremap gj j
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 map m <Plug>(easymotion-s)
 nnoremap -A ggVG
-nnoremap -b :Git blame<CR>
 nnoremap -B :%!xxd
 nnoremap -C :w! ~/.dummy<CR>
 vmap -C :w! ~/.dummy<CR>
