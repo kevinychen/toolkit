@@ -1,0 +1,4 @@
+
+" Match Fugitive commands
+eclipseaction Gblame org.eclipse.egit.ui.team.ShowBlame
+

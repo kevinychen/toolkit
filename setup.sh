@@ -24,6 +24,11 @@ if [ -e ~/.gitignore ]; then
     mv ~/.gitignore ~/.gitignore.bak
 fi
 ln .gitignore ~/.gitignore
+if [ -e ~/.vrapperrc ]; then
+    rm -f ~/.vrapperrc.bak
+    mv ~/.vrapperrc ~/.vrapperrc.bak
+fi
+ln .vrapperrc ~/.vrapperrc
 if [ -e ~/.vim ]; then
     rm -rf ~/.vim.bak
     mv ~/.vim ~/.vim.bak
