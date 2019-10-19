@@ -98,6 +98,7 @@ function glab() {
     git branch -D $1
     git checkout -b $1
 }
+__git_complete glab _git_branch
 
 function gon() {
     git checkout $1
@@ -127,6 +128,7 @@ function gup() {
     git pull
     git checkout $currBranch
 }
+__git_complete gup _git_branch
 
 function kexport() {
     keytool -export -keystore $1 -alias $2 -file $3

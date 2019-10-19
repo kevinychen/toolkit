@@ -70,7 +70,7 @@ nnoremap -q :q<CR>
 nnoremap -Q :qall<CR>
 nnoremap -R :set nornu<CR>
 nnoremap -s :sp
-nnoremap -S :syntax sync fromstart
+nnoremap -S :syntax sync fromstart<CR>
 nnoremap -u O<Esc>j
 nnoremap -U YpVr=
 nnoremap -v :vsp
