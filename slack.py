@@ -9,6 +9,7 @@ token = '<add token here>'
 sc = SlackClient(token)
 
 # Go to the Slack customize page and evaluate "TS.boot_data.api_token" in the console.
+palantir_token = '<add token here>'
 xoxs_token = '<add token here>'
 
 # (channel_id, msg_id) = parse('https://workspace.slack.com/archives/C1234567890/p1234567890123456')
@@ -44,11 +45,17 @@ def react_string(msg_url, s):
             else:
                 react(msg_url, '-{}'.format(c))
                 letter_map[c] = 1
+            time.sleep(1)
 
+# image_url = get_palantir_emojis()['thumbsup']
+def get_palantir_emojis():
+    return SlackClient(palantir_token).api_call("emoji.list")['emoji']
+
+# upload_emoji('thumbsup', url)
 def upload_emoji(emoji_name, image_url):
     fd, path = tempfile.mkstemp()
     try:
-        with open(fd, 'wb') as fh:
+        with open(path, 'wb') as fh:
             fh.write(requests.get(image_url).content)
         subprocess.Popen([
             'curl',
@@ -57,7 +64,7 @@ def upload_emoji(emoji_name, image_url):
             '-H', 'Authorization: Bearer {}'.format(xoxs_token),
             '-F', 'mode=data',
             '-F', 'name={}'.format(emoji_name),
-            '-F', 'image=@{}'.format(TEMP_FILE),
+            '-F', 'image=@{}'.format(path),
             ])
         time.sleep(1)
     finally:
