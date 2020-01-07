@@ -159,6 +159,10 @@ function seek() {
     grep $1 * -r
 }
 
+function seekreplace() {
+    find . -type f -exec sed -i '' -e "s/$1/$2/" {} \;
+}
+
 function c() {
     cat $1 | pbcopy
 }
@@ -203,8 +207,11 @@ function port() {
     lsof -n -i:$1 | grep LISTEN
 }
 
+# convert a mov file to gif
+# change the scale (width) and delay (delay between frames, larger value gives a slower gif) as appropriate
+# requires brew install ffmpeg gifsicle
 function gif() {
-    ffmpeg -i $1 -s 600x400 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=3
+    ffmpeg -i $1 -vf "fps=10,scale=800:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 -f gif - | gifsicle --optimize=3 --delay=4 -o $2
 }
 
 # vim keybindings with selected ones from emacs
