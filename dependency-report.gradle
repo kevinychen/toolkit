@@ -1,0 +1,32 @@
+// Based on https://gist.github.com/tzachz/419478fc8b009e953f5e5dc39f3f3a2a
+// Inspired by https://gist.github.com/abesto/cdcdd38263eacf1cbb51
+// Task creates a .dot file with all inter-module dependencies
+// Supports any depth of nested modules
+
+task moduleDependencyReport {
+    doLast {
+        def file = new File("project-dependencies.dot")
+        file.delete()
+        file << "digraph {\n"
+        file << "splines=ortho\n"
+        printDeps(file, rootProject)
+        file << "}\n"
+    }
+}
+
+// recursively print dependencies to file and move on to child projects
+def printDeps(file, project) {
+    if (project.configurations.find { it.name == 'compile' }) {
+        project.configurations.compile.dependencies
+            .matching { it in ProjectDependency }
+            .each { to -> file << ("\"${project.name}\" -> \"${to.name}\"\n")}
+    }
+    if (project.configurations.find { it.name == 'implementation' }) {
+        project.configurations.implementation.dependencies
+            .matching { it in ProjectDependency }
+            .each { to -> file << ("\"${project.name}\" -> \"${to.name}\"\n")}
+    }
+
+    project.childProjects.each { child -> printDeps(file, child.value) }
+}
+

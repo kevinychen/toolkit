@@ -45,6 +45,7 @@ au BufReadPost,BufNewFile *.gradle set filetype=groovy
 set rtp+=/usr/local/opt/fzf
 set clipboard=unnamed,unnamedplus
 set indentkeys-=<:><CR>
+let groovy_regex_strings=1
 
 nnoremap k gk
 nnoremap j gj

@@ -83,6 +83,14 @@ if ! command -v ag > /dev/null; then
     brew install the_silver_searcher
 fi
 
+# Install dot (for drawing graphs)
+if ! command -v dot > /dev/null; then
+    brew install graphviz
+fi
+
 # Set desktop background
 osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$HOME/repos/toolkit/oranges.jpg\""
+
+# Holding down a vowel key doesn't bring up a Unicode vowel popup menu
+defaults write -g ApplePressAndHoldEnabled -bool false
 

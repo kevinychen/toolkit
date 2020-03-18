@@ -172,9 +172,9 @@ function v() {
     if [ "$ext" = "jks" ]
     then
         keytool -list -v -keystore $1 | less
-    elif [ "$ext" = "cer" ]
+    elif [ "$ext" = "cer" ] || [ "$ext" = "pem" ]
     then
-        openssl x509 -in $1 -noout -text
+        openssl x509 -in $1 -noout -text | less
     elif [ "$ext" = "jpg" ] || [ "$ext" = "png" ] || [ "$ext" = "gif" ]
     then
         imgcat $1
@@ -207,11 +207,28 @@ function port() {
     lsof -n -i:$1 | grep LISTEN
 }
 
+# find 20 most recently updated files in this directory (recursive)
+function recent() {
+    time find . -xdev -type f -print0 | xargs -0 stat -f "%m%t%Sm %N" | sort -rn | head -n 20 | cut -f2-
+}
+
 # convert a mov file to gif
 # change the scale (width) and delay (delay between frames, larger value gives a slower gif) as appropriate
 # requires brew install ffmpeg gifsicle
 function gif() {
     ffmpeg -i $1 -vf "fps=10,scale=800:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 -f gif - | gifsicle --optimize=3 --delay=4 -o $2
+}
+
+# generate a product dependency graph of a Gradle project
+# should be executed in the root directory of the Gradle project
+# requires brew install graphviz
+# to view the graph: open project-dependencies.png
+function depgraph() {
+    echo "apply from: System.getProperty('user.home') + '/repos/toolkit/dependency-report.gradle'" >> build.gradle
+    ./gradlew moduleDependencyReport
+    cat build.gradle | tail -r | tail -n +2 | tail -r > build.gradle.tmp && mv build.gradle.tmp build.gradle
+    dot -Tpng project-dependencies.dot -o project-dependencies.png
+    rm project-dependencies.dot
 }
 
 # vim keybindings with selected ones from emacs
