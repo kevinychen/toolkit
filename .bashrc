@@ -85,6 +85,9 @@ alias drmall='docker rm $(docker ps -a -q)'
 alias drmi='docker rmi'
 alias dup='docker-compose up -d'
 
+alias yi='yarn install'
+alias yb='yarn build'
+
 function gap {
     if [ -e $1 ]
     then

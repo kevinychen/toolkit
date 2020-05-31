@@ -19,6 +19,7 @@ set rnu
 set expandtab
 set shiftwidth=4
 set autoindent
+set lazyredraw
 
 " To add more plugins, add the line, open vim, and run :PluginInstall
 set rtp+=~/.vim/bundle/Vundle.vim
