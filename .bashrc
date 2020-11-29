@@ -12,7 +12,6 @@ alias d='docker'
 alias f='find . -name'
 alias k='kill -9'
 alias l='ls -a'
-alias n='terminal-notifier -message done'
 alias p='python'
 alias ll='ls -la'
 alias vb='vim ~/.bashrc'
@@ -20,6 +19,7 @@ alias vd='vimdiff'
 alias grep='grep --color=auto'
 alias load='source ~/.bashrc'
 alias maketags='ctags -R .'
+alias notify='terminal-notifier -message done'
 
 source ~/repos/toolkit/git-completion.bash
 alias ga='git add'
@@ -246,6 +246,10 @@ bind -m vi-insert "\C-u.":kill-line
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='ag -l --path-to-ignore ~/.gitignore'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 if [ -a ~/.bashrc.mine ]
 then
