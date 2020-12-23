@@ -47,14 +47,6 @@ if [ ! -e ~/Documents/eclipse-workspaces/main ]; then
     cp -r org.eclipse.core.runtime ~/Documents/eclipse-workspaces/main/.metadata/.plugins/
 fi
 
-# Setup snap2
-if [ ! -e ~/repos/snap2 ]; then
-    cd ~/repos
-    git clone git@github.com:kevinychen/snap2.git
-    cd snap2
-    ./gradlew downloadFiles
-fi
-
 if [ "$1" == "osx" ]; then
     # Install Vim with +clipboard
     if ! vim --version | grep "+clipboard" > /dev/null; then
@@ -91,6 +83,17 @@ if [ "$1" == "osx" ]; then
     defaults write -g ApplePressAndHoldEnabled -bool false
 
 elif [ "$1" == "windows" ]; then
+    choco install jdk8
     choco install python3
+    choco install conemu
+    ln ConEmu.xml ~/AppData/Roaming/ConEmu.xml
+fi
+
+# Setup snap2
+if [ ! -e ~/repos/snap2 ]; then
+    cd ~/repos
+    git clone git@github.com:kevinychen/snap2.git
+    cd snap2
+    ./gradlew downloadFiles
 fi
 

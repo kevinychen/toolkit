@@ -1,5 +1,3 @@
-cd ~
-
 export HISTFILESIZE=999999
 export HISTSIZE=999999
 export PS1='\[\e[33;1m\]\u@\h: \[\e[31m\]\W\[\e[0m\]\$ '
@@ -7,14 +5,14 @@ export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 export PYTHONPATH=~/repos/snap2/snap-python
-alias puz='PYTHONSTARTUP=~/repos/snap2/snap-python/bootstrap.py python'
+alias puz='PYTHONSTARTUP=~/repos/snap2/snap-python/bootstrap.py python -i'
 
 alias ..='cd ..'
 alias d='docker'
 alias f='find . -name'
 alias k='kill -9'
 alias l='ls -a'
-alias p='python'
+alias p='python -i'
 alias ll='ls -la'
 alias vb='vim ~/.bashrc'
 alias vd='vimdiff'
