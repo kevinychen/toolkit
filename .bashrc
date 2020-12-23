@@ -1,3 +1,5 @@
+cd ~
+
 export HISTFILESIZE=999999
 export HISTSIZE=999999
 export PS1='\[\e[33;1m\]\u@\h: \[\e[31m\]\W\[\e[0m\]\$ '

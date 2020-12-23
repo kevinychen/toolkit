@@ -41,18 +41,6 @@ mkdir ~/.vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
-if [ "$1" == "simple" ]; then
-    echo "Simple setup enabled; aborting early."
-    exit 0
-fi
-
-# Install Vim with +clipboard
-if ! vim --version | grep "+clipboard" > /dev/null; then
-    brew install vim
-    # refresh Bash cache
-    hash -r
-fi
-
 # Setup Eclipse
 if [ ! -e ~/Documents/eclipse-workspaces/main ]; then
     mkdir -p ~/Documents/eclipse-workspaces/main/.metadata/.plugins
@@ -67,30 +55,42 @@ if [ ! -e ~/repos/snap2 ]; then
     ./gradlew downloadFiles
 fi
 
-# Setup ctags
-if ! command -v ctags > /dev/null; then
-    brew install ctags
+if [ "$1" == "osx" ]; then
+    # Install Vim with +clipboard
+    if ! vim --version | grep "+clipboard" > /dev/null; then
+        brew install vim
+        # refresh Bash cache
+        hash -r
+    fi
+
+    # Setup ctags
+    if ! command -v ctags > /dev/null; then
+        brew install ctags
+    fi
+
+    # Setup fzf (Fuzzy Search in terminal)
+    if ! command -v fzf > /dev/null; then
+        brew install fzf
+        yes | $(brew --prefix)/opt/fzf/install
+    fi
+
+    # Install ag, the silver searcher
+    if ! command -v ag > /dev/null; then
+        brew install the_silver_searcher
+    fi
+
+    # Install dot (for drawing graphs)
+    if ! command -v dot > /dev/null; then
+        brew install graphviz
+    fi
+
+    # Set desktop background
+    osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$HOME/repos/toolkit/oranges.jpg\""
+
+    # Holding down a vowel key doesn't bring up a Unicode vowel popup menu
+    defaults write -g ApplePressAndHoldEnabled -bool false
+
+elif [ "$1" == "windows" ]; then
+    choco install python3
 fi
-
-# Setup fzf (Fuzzy Search in terminal)
-if ! command -v fzf > /dev/null; then
-    brew install fzf
-    yes | $(brew --prefix)/opt/fzf/install
-fi
-
-# Install ag, the silver searcher
-if ! command -v ag > /dev/null; then
-    brew install the_silver_searcher
-fi
-
-# Install dot (for drawing graphs)
-if ! command -v dot > /dev/null; then
-    brew install graphviz
-fi
-
-# Set desktop background
-osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$HOME/repos/toolkit/oranges.jpg\""
-
-# Holding down a vowel key doesn't bring up a Unicode vowel popup menu
-defaults write -g ApplePressAndHoldEnabled -bool false
 
