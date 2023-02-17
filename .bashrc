@@ -5,14 +5,14 @@ export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 export PYTHONPATH=~/repos/snap2/snap-python
-alias puz='PYTHONSTARTUP=~/repos/snap2/snap-python/bootstrap.py python -i'
+alias puz='PYTHONSTARTUP=~/repos/snap2/snap-python/bootstrap.py p'
 
 alias ..='cd ..'
 alias d='docker'
 alias f='find . -name'
 alias k='kill -9'
 alias l='ls -a'
-alias p='python -i'
+alias p='python3 -i'
 alias ll='ls -la'
 alias vb='vim ~/.bashrc'
 alias vd='vimdiff'
@@ -20,6 +20,7 @@ alias grep='grep --color=auto'
 alias load='source ~/.bashrc'
 alias maketags='ctags -R .'
 alias notify='terminal-notifier -message done'
+alias acpoet="source $(poetry env info --path)/bin/activate"
 
 source ~/repos/toolkit/git-completion.bash
 alias ga='git add'
@@ -120,6 +121,10 @@ function gll() {
     git log -L $2,$2:$1
 }
 
+function greplace() {
+    git grep -l "$1" | xargs sed -i '' -e "s/$1/$2/g"
+}
+
 function gsq() {
     git reset --soft HEAD~`expr $1 - 1`
     git commit --amend
@@ -185,7 +190,7 @@ function v() {
     then
         open $1
     else
-        vi $1
+        vim $1
     fi
 }
 
@@ -247,9 +252,9 @@ bind -m vi-insert "\C-u.":kill-line
 export FZF_DEFAULT_COMMAND='ag -l --path-to-ignore ~/.gitignore'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 if [ -a ~/.bashrc.mine ]
 then
