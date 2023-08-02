@@ -20,6 +20,7 @@ set expandtab
 set shiftwidth=4
 set autoindent
 set lazyredraw
+set re=0
 
 " To add more plugins, add the line, open vim, and run :PluginInstall
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -28,6 +29,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-fugitive'
 Plugin 'junegunn/fzf.vim'
+Plugin 'petRUShka/vim-sage'
 call vundle#end()
 
 source ~/.vim/comments.vim

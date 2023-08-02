@@ -9,7 +9,6 @@ if [ -e ~/.bashrc ]; then
     mv ~/.bashrc ~/.bashrc.bak
 fi
 ln .bashrc ~/.bashrc
-source ~/.bashrc
 if [ -e ~/.vimrc ]; then
     rm -f ~/.vimrc.bak
     mv ~/.vimrc ~/.vimrc.bak
@@ -41,12 +40,6 @@ mkdir ~/.vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
-# Setup Eclipse
-if [ ! -e ~/Documents/eclipse-workspaces/main ]; then
-    mkdir -p ~/Documents/eclipse-workspaces/main/.metadata/.plugins
-    cp -r org.eclipse.core.runtime ~/Documents/eclipse-workspaces/main/.metadata/.plugins/
-fi
-
 if [ "$1" == "osx" ]; then
     # Install Vim with +clipboard
     if ! vim --version | grep "+clipboard" > /dev/null; then
@@ -76,6 +69,18 @@ if [ "$1" == "osx" ]; then
         brew install graphviz
     fi
 
+    # Install poetry
+    if ! command -v poetry > /dev/null; then
+        brew install poetry
+    fi
+
+    # Install vscode
+    if [ -e "~/Library/Application Support/Code/User" ]; then
+        brew install --cask visual-studio-code
+        ln vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+        ln vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+    fi
+
     # Set desktop background
     osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$HOME/repos/toolkit/oranges.jpg\""
 
@@ -89,11 +94,5 @@ elif [ "$1" == "windows" ]; then
     ln ConEmu.xml ~/AppData/Roaming/ConEmu.xml
 fi
 
-# Setup snap2
-if [ ! -e ~/repos/snap2 ]; then
-    cd ~/repos
-    git clone git@github.com:kevinychen/snap2.git
-    cd snap2
-    ./gradlew downloadFiles
-fi
+source ~/.bashrc
 

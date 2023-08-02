@@ -1,0 +1,24 @@
+<keymap version="1" name="kyc" parent="Mac OS X 10.5+">
+  <action id="FileStructurePopup">
+    <keyboard-shortcut first-keystroke="meta o" />
+  </action>
+  <action id="FindPrevious" />
+  <action id="FindUsages">
+    <keyboard-shortcut first-keystroke="shift meta g" />
+  </action>
+  <action id="GotoChangedFile" />
+  <action id="GotoClass">
+    <keyboard-shortcut first-keystroke="shift meta t" />
+  </action>
+  <action id="GotoDeclaration">
+    <keyboard-shortcut first-keystroke="f3" />
+    <keyboard-shortcut first-keystroke="meta b" />
+  </action>
+  <action id="GotoTest">
+    <keyboard-shortcut first-keystroke="meta t" />
+  </action>
+  <action id="ResourceExplorer.show" />
+  <action id="ServiceView.ShowServices" />
+  <action id="ToggleBookmark" />
+  <action id="org.intellij.plugins.markdown.ui.actions.styling.ToggleBoldAction" />
+</keymap>

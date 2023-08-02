@@ -1,0 +1,15 @@
+{
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "prettier.printWidth": 120,
+    "prettier.tabWidth": 4,
+    "prettier.arrowParens": "avoid",
+    "[rust]": {
+        "editor.formatOnSave": true
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+}

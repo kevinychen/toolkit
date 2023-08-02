@@ -12,7 +12,7 @@ alias d='docker'
 alias f='find . -name'
 alias k='kill -9'
 alias l='ls -a'
-alias p='python3 -i'
+alias p='python3'
 alias ll='ls -la'
 alias vb='vim ~/.bashrc'
 alias vd='vimdiff'
@@ -20,7 +20,6 @@ alias grep='grep --color=auto'
 alias load='source ~/.bashrc'
 alias maketags='ctags -R .'
 alias notify='terminal-notifier -message done'
-alias acpoet="source $(poetry env info --path)/bin/activate"
 
 source ~/repos/toolkit/git-completion.bash
 alias ga='git add'
@@ -239,6 +238,22 @@ function depgraph() {
     rm project-dependencies.dot
 }
 
+function java_use() {
+    export JAVA_HOME=$(/usr/libexec/java_home -v $1)
+    export PATH=$JAVA_HOME/bin:$PATH
+    java -version
+}
+
+function acpoet() {
+    source $(poetry env info --path)/bin/activate
+}
+
+# "datamuse lc ice" returns words that follow ice
+function datamuse() {
+    curl "https://api.datamuse.com/words?$1=$2&sp=*" | jq -r '.[].word' | less
+}
+
+
 # vim keybindings with selected ones from emacs
 set -o vi
 bind -m vi-command ".":insert-last-argument
@@ -261,3 +276,5 @@ then
     source ~/.bashrc.mine
 fi
 
+java_use 17 > /dev/null
+. "$HOME/.cargo/env"
