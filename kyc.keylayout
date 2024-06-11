@@ -1,7 +1,7 @@
 <?xml version="1.1" encoding="UTF-8"?>
 <!DOCTYPE keyboard SYSTEM "file://localhost/System/Library/DTDs/KeyboardLayout.dtd">
 <!--Created by Ukelele version 3.4.2.314 on 2020-11-29 at 12:14 (PST)-->
-<!--Last edited by Ukelele version 3.4.2.314 on 2020-11-29 at 12:52 (PST)-->
+<!--Last edited by Ukelele version 3.4.2.314 on 2021-03-21 at 22:41 (PDT)-->
 <keyboard group="126" id="-1677" name="kyc" maxout="1">
     <layouts>
         <layout first="0" last="17" mapSet="ANSI" modifiers="Modifiers"/>
@@ -286,7 +286,7 @@
             <key code="34" output="ɪ"/>
             <key code="35" output="π"/>
             <key code="36" output="&#x000D;"/>
-            <key code="37" output="¬"/>
+            <key code="37" output="λ"/>
             <key code="38" output="∆"/>
             <key code="39" output="æ"/>
             <key code="40" output="˚"/>
