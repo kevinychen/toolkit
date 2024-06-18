@@ -276,5 +276,3 @@ then
     source ~/.bashrc.mine
 fi
 
-java_use 17 > /dev/null
-. "$HOME/.cargo/env"

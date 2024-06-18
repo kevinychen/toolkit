@@ -28,6 +28,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-fugitive'
+Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'petRUShka/vim-sage'
 call vundle#end()

@@ -24,11 +24,11 @@ if [ -e ~/.gitignore ]; then
     mv ~/.gitignore ~/.gitignore.bak
 fi
 ln .gitignore ~/.gitignore
-if [ -e ~/.vrapperrc ]; then
-    rm -f ~/.vrapperrc.bak
-    mv ~/.vrapperrc ~/.vrapperrc.bak
+if [ -e ~/.ideavimrc ]; then
+    rm -f ~/.ideavimrc.bak
+    mv ~/.ideavimrc ~/.ideavimrc.bak
 fi
-ln .vrapperrc ~/.vrapperrc
+ln .ideavimrc ~/.ideavimrc
 if [ -e ~/.vim ]; then
     rm -rf ~/.vim.bak
     mv ~/.vim ~/.vim.bak
@@ -41,38 +41,17 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
 if [ "$1" == "osx" ]; then
-    # Install Vim with +clipboard
-    if ! vim --version | grep "+clipboard" > /dev/null; then
-        brew install vim
-        # refresh Bash cache
-        hash -r
-    fi
-
-    # Setup ctags
-    if ! command -v ctags > /dev/null; then
-        brew install ctags
-    fi
+    # Install useful things
+    brew install rectangle
+    brew install the_silver_searcher
+    brew install ukelele
+    brew install --cask jdk-mission-control
+    brew install --cask jumpcut
+    brew install --cask paintbrush
 
     # Setup fzf (Fuzzy Search in terminal)
-    if ! command -v fzf > /dev/null; then
-        brew install fzf
-        yes | $(brew --prefix)/opt/fzf/install
-    fi
-
-    # Install ag, the silver searcher
-    if ! command -v ag > /dev/null; then
-        brew install the_silver_searcher
-    fi
-
-    # Install dot (for drawing graphs)
-    if ! command -v dot > /dev/null; then
-        brew install graphviz
-    fi
-
-    # Install poetry
-    if ! command -v poetry > /dev/null; then
-        brew install poetry
-    fi
+    brew install fzf
+    yes | $(brew --prefix)/opt/fzf/install
 
     # Install vscode
     if [ -e "~/Library/Application Support/Code/User" ]; then
