@@ -21,6 +21,7 @@ set shiftwidth=4
 set autoindent
 set lazyredraw
 set re=0
+set matchpairs+=<:>
 
 " To add more plugins, add the line, open vim, and run :PluginInstall
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -80,6 +81,7 @@ nnoremap -P :set paste<CR>
 nnoremap -q :q<CR>
 nnoremap -Q :qall<CR>
 nnoremap -R :set nornu<CR>
+nnoremap -r :Re<CR>
 nnoremap -s :sp
 nnoremap -S :syntax sync fromstart<CR>
 nnoremap -u O<Esc>j

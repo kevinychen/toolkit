@@ -4,22 +4,20 @@ export PS1='\[\e[33;1m\]\u@\h: \[\e[31m\]\W\[\e[0m\]\$ '
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
-export PYTHONPATH=~/repos/snap2/snap-python
-alias puz='PYTHONSTARTUP=~/repos/snap2/snap-python/bootstrap.py p'
+export PYTHONPATH=~/repos/toolkit/python
+alias pu='PYTHONSTARTUP=~/repos/toolkit/python/bootstrap.py p'
 
 alias ..='cd ..'
 alias d='docker'
 alias f='find . -name'
-alias k='kill -9'
-alias l='ls -a'
 alias p='python3'
 alias ll='ls -la'
 alias vb='vim ~/.bashrc'
 alias vd='vimdiff'
 alias grep='grep --color=auto'
 alias load='source ~/.bashrc'
-alias maketags='ctags -R .'
-alias notify='terminal-notifier -message done'
+alias binextract='binwalk -dd=".*"'
+alias sagepython='sage -python -c "import sys; print(sys.executable)"'
 
 source ~/repos/toolkit/git-completion.bash
 alias ga='git add'
@@ -63,14 +61,14 @@ alias grd='git commit --amend --date="$(date)"'
 alias grs='git reset HEAD~1'
 alias grsh='git reset HEAD --hard'
 alias grso='git reset HEAD~1 --hard'
-alias grv='git revert'
-alias grvc='git revert --continue'
 alias gs='git status; git log | head'
 alias gsh='git show'
 __git_complete gsh _git_show
 alias gshs='git show --stat'
 __git_complete gshs _git_show
 alias gt='git tag'
+alias gv='git revert'
+alias gvc='git revert --continue'
 
 alias gw='./gradlew'
 alias gwe='./gradlew eclipse'
@@ -84,9 +82,6 @@ alias dsall='docker stop $(docker ps -a -q)'
 alias drmall='docker rm $(docker ps -a -q)'
 alias drmi='docker rmi'
 alias dup='docker-compose up -d'
-
-alias yi='yarn install'
-alias yb='yarn build'
 
 function gap {
     if [ -e $1 ]
@@ -110,10 +105,6 @@ function gon() {
 
 function ged() {
     git rebase -i HEAD~$1
-}
-
-function ggr() {
-    git grep -l $1 | xargs sed -i '' -e "s/$1/$2/g"
 }
 
 function gll() {
@@ -162,6 +153,10 @@ function cd() {
     builtin cd "${new_directory}" && ls
 }
 
+function mcd() {
+    mkdir $1 && cd $1
+}
+
 function seek() {
     grep $1 * -r
 }
@@ -182,12 +177,6 @@ function v() {
     elif [ "$ext" = "cer" ] || [ "$ext" = "pem" ]
     then
         openssl x509 -in $1 -noout -text | less
-    elif [ "$ext" = "jpg" ] || [ "$ext" = "png" ] || [ "$ext" = "gif" ]
-    then
-        imgcat $1
-    elif [ "$ext" = "pdf" ]
-    then
-        open $1
     else
         vim $1
     fi
@@ -253,6 +242,14 @@ function datamuse() {
     curl "https://api.datamuse.com/words?$1=$2&sp=*" | jq -r '.[].word' | less
 }
 
+# Run `docker build .` and then `docker images` to get the arg
+function dr() {
+    docker run -i -t $1 /bin/bash
+}
+
+function pop_rdi_gadget() {
+    xxd -c1 -p $1 | grep -n -B1 c3 | grep 5f -m3 | awk '{printf"%x\n",$1-1}'
+}
 
 # vim keybindings with selected ones from emacs
 set -o vi
@@ -267,12 +264,11 @@ bind -m vi-insert "\C-u.":kill-line
 export FZF_DEFAULT_COMMAND='ag -l --path-to-ignore ~/.gitignore'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 if [ -a ~/.bashrc.mine ]
 then
     source ~/.bashrc.mine
 fi
+
+. "$HOME/.cargo/env"
+export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 

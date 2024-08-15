@@ -3,5 +3,4 @@
 .apt_generated_tests
 build
 .DS_Store
-#**/generated
 *.ignoreme

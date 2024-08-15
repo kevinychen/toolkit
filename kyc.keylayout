@@ -1,8 +1,8 @@
 <?xml version="1.1" encoding="UTF-8"?>
 <!DOCTYPE keyboard SYSTEM "file://localhost/System/Library/DTDs/KeyboardLayout.dtd">
 <!--Created by Ukelele version 3.4.2.314 on 2020-11-29 at 12:14 (PST)-->
-<!--Last edited by Ukelele version 396 on 2024-06-12 at 13:42 (PDT)-->
-<keyboard group="126" id="-27552" name="kyc" maxout="8">
+<!--Last edited by Ukelele version 359 on 2024-08-09 at 21:32 (PDT)-->
+<keyboard group="126" id="-27552" name="kyc" maxout="7">
     <layouts>
         <layout first="0" last="17" mapSet="ANSI" modifiers="Modifiers"/>
         <layout first="18" last="18" mapSet="JIS" modifiers="Modifiers"/>
@@ -156,6 +156,7 @@
             <key code="7" output="X"/>
             <key code="8" output="C"/>
             <key code="9" output="V"/>
+            <key code="10" output=""/>
             <key code="11" output="B"/>
             <key code="12" output="Q"/>
             <key code="13" output="W"/>
@@ -261,7 +262,7 @@
             <key code="7" output="𝛘"/>
             <key code="8" output="ç"/>
             <key code="9" output="√"/>
-            <key code="10" output=""/>
+            <key code="10" output="≈"/>
             <key code="11" output="∫"/>
             <key code="12" output="œ"/>
             <key code="13" output="Σ"/>
@@ -291,7 +292,7 @@
             <key code="37" output="λ"/>
             <key code="38" output="∆"/>
             <key code="39" output="æ"/>
-            <key code="40" output="˚"/>
+            <key code="40" output="kyc2915"/>
             <key code="41" output="…"/>
             <key code="42" output="«"/>
             <key code="43" output="≤"/>
@@ -683,6 +684,7 @@
             <key code="7" output=""/>
             <key code="8" output=""/>
             <key code="9" output=""/>
+            <key code="10" output=""/>
             <key code="11" output=""/>
             <key code="12" output=""/>
             <key code="13" output=""/>

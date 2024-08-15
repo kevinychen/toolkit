@@ -40,14 +40,24 @@ mkdir ~/.vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
-if [ "$1" == "osx" ]; then
+if [ "$1" == "install" ]; then
     # Install useful things
+    brew install binutils
+    brew install hashcat
+    brew install imagemagick
+    brew install node
     brew install rectangle
     brew install the_silver_searcher
+    brew install tree
     brew install ukelele
+    brew install --cask audacity
+    brew install --cask docker
+    brew install --cask ghidra
     brew install --cask jdk-mission-control
     brew install --cask jumpcut
     brew install --cask paintbrush
+    brew install --cask sage
+    brew install --cask wireshark
 
     # Setup fzf (Fuzzy Search in terminal)
     brew install fzf
@@ -65,13 +75,6 @@ if [ "$1" == "osx" ]; then
 
     # Holding down a vowel key doesn't bring up a Unicode vowel popup menu
     defaults write -g ApplePressAndHoldEnabled -bool false
-
-elif [ "$1" == "windows" ]; then
-    choco install jdk8
-    choco install python3
-    choco install conemu
-    ln ConEmu.xml ~/AppData/Roaming/ConEmu.xml
-fi
 
 source ~/.bashrc
 
