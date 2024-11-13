@@ -16,8 +16,9 @@ alias vb='vim ~/.bashrc'
 alias vd='vimdiff'
 alias grep='grep --color=auto'
 alias load='source ~/.bashrc'
-alias binextract='binwalk -dd=".*"'
+alias binextract='binwalk -e --dd=".*"'
 alias sagepython='sage -python -c "import sys; print(sys.executable)"'
+alias co='curl -O'
 
 source ~/repos/toolkit/git-completion.bash
 alias ga='git add'
@@ -61,14 +62,14 @@ alias grd='git commit --amend --date="$(date)"'
 alias grs='git reset HEAD~1'
 alias grsh='git reset HEAD --hard'
 alias grso='git reset HEAD~1 --hard'
+alias grv='git revert'
+alias grvc='git revert --continue'
 alias gs='git status; git log | head'
 alias gsh='git show'
 __git_complete gsh _git_show
 alias gshs='git show --stat'
 __git_complete gshs _git_show
 alias gt='git tag'
-alias gv='git revert'
-alias gvc='git revert --continue'
 
 alias gw='./gradlew'
 alias gwe='./gradlew eclipse'
@@ -80,7 +81,8 @@ alias di='docker images'
 alias dps='docker ps'
 alias dsall='docker stop $(docker ps -a -q)'
 alias drmall='docker rm $(docker ps -a -q)'
-alias drmi='docker rmi'
+alias drm='docker rm'
+alias drmi='docker image rm'
 alias dup='docker-compose up -d'
 
 function gap {
@@ -98,9 +100,8 @@ function glab() {
 }
 __git_complete glab _git_branch
 
-function gon() {
-    git checkout $1
-    git rebase --onto $2 $1~1 $1
+function gron() {
+    git rebase --onto $1 HEAD~1 `git rev-parse --abbrev-ref HEAD`
 }
 
 function ged() {
@@ -245,10 +246,6 @@ function datamuse() {
 # Run `docker build .` and then `docker images` to get the arg
 function dr() {
     docker run -i -t $1 /bin/bash
-}
-
-function pop_rdi_gadget() {
-    xxd -c1 -p $1 | grep -n -B1 c3 | grep 5f -m3 | awk '{printf"%x\n",$1-1}'
 }
 
 # vim keybindings with selected ones from emacs

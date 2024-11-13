@@ -63,6 +63,10 @@ if [ "$1" == "install" ]; then
     brew install fzf
     yes | $(brew --prefix)/opt/fzf/install
 
+    # Needed for pwntools
+    brew install cmake
+    brew install pkg-config
+
     # Install vscode
     if [ -e "~/Library/Application Support/Code/User" ]; then
         brew install --cask visual-studio-code

@@ -39,5 +39,15 @@
         "args": {
             "snippet": "console.log(${TM_SELECTED_TEXT}$1)$2;"
         }
+    },
+    {
+        "key": "cmd+]",
+        "command": "workbench.action.navigateForward",
+        "when": "canNavigateForward"
+    },
+    {
+        "key": "cmd+]",
+        "command": "-editor.action.indentLines",
+        "when": "editorTextFocus && !editorReadonly"
     }
 ]

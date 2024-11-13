@@ -72,7 +72,7 @@ nnoremap -d o<Esc>k
 nnoremap -e :e<CR>
 nnoremap -f :vsp<CR>:FZF<CR>
 nnoremap -H :browse oldfiles<CR>
-nnoremap -J ggVG:!python -m json.tool<CR>
+nnoremap -J ggVG:!python3 -m json.tool<CR>
 nnoremap -n :next<CR>
 nnoremap -N :set nopaste<CR>
 nnoremap -o :o
@@ -89,10 +89,11 @@ nnoremap -U YpVr=
 nnoremap -v :vsp
 nnoremap -w :w<CR>
 " -x used for comments.vim
-nnoremap -` /```<CR>
+nnoremap -` /````<CR>
 nnoremap -2 :set shiftwidth=2<CR>
 nnoremap -4 :set shiftwidth=4<CR>
 nnoremap -8 :set shiftwidth=8<CR>
 nnoremap <Tab> <C-w>w
 nnoremap <S-Tab> <C-w>W
 
+:command Gbl Git blame
