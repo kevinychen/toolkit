@@ -1,7 +1,7 @@
 <?xml version="1.1" encoding="UTF-8"?>
 <!DOCTYPE keyboard SYSTEM "file://localhost/System/Library/DTDs/KeyboardLayout.dtd">
 <!--Created by Ukelele version 3.4.2.314 on 2020-11-29 at 12:14 (PST)-->
-<!--Last edited by Ukelele version 359 on 2024-08-09 at 21:32 (PDT)-->
+<!--Last edited by Ukelele version 359 on 2024-12-24 at 15:37 (CST)-->
 <keyboard group="126" id="-27552" name="kyc" maxout="7">
     <layouts>
         <layout first="0" last="17" mapSet="ANSI" modifiers="Modifiers"/>
@@ -262,7 +262,7 @@
             <key code="7" output="𝛘"/>
             <key code="8" output="ç"/>
             <key code="9" output="√"/>
-            <key code="10" output="≈"/>
+            <key code="10" output=""/>
             <key code="11" output="∫"/>
             <key code="12" output="œ"/>
             <key code="13" output="Σ"/>
@@ -302,7 +302,7 @@
             <key code="47" output="≥"/>
             <key code="48" output="&#x0009;"/>
             <key code="49" output=""/>
-            <key code="50" output="`"/>
+            <key code="50" output="≈"/>
             <key code="51" output="&#x0008;"/>
             <key code="53" output="&#x001B;"/>
             <key code="64" output="&#x0010;"/>

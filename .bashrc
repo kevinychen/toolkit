@@ -1,3 +1,4 @@
+export HISTCONTROL="ignoredups:ignorespace"
 export HISTFILESIZE=999999
 export HISTSIZE=999999
 export PS1='\[\e[33;1m\]\u@\h: \[\e[31m\]\W\[\e[0m\]\$ '
@@ -8,7 +9,7 @@ export PYTHONPATH=~/repos/toolkit/python
 alias pu='PYTHONSTARTUP=~/repos/toolkit/python/bootstrap.py p'
 
 alias ..='cd ..'
-alias d='docker'
+alias a='fc -s'
 alias f='find . -name'
 alias p='python3'
 alias ll='ls -la'
@@ -16,28 +17,30 @@ alias vb='vim ~/.bashrc'
 alias vd='vimdiff'
 alias grep='grep --color=auto'
 alias load='source ~/.bashrc'
-alias binextract='binwalk -e --dd=".*"'
-alias sagepython='sage -python -c "import sys; print(sys.executable)"'
 alias co='curl -O'
+
+alias db='docker build .'
+alias di='docker images'
+alias dps='docker ps'
+alias dr='docker run -i -t --rm'
+alias drm='docker rm'
+alias drmall='docker rm $(docker ps -a -q)'
+alias drmi='docker image rm'
+alias dsall='docker stop $(docker ps -a -q)'
+alias dup='docker-compose up -d'
 
 source ~/repos/toolkit/git-completion.bash
 alias ga='git add'
-__git_complete ga _git_add
 alias gam='git commit --amend'
 alias gb='git branch'
-__git_complete gb _git_branch
 alias gbl='git blame'
 alias gc='git commit'
 alias gch='git checkout'
-__git_complete gch _git_checkout
 alias gcl='git clone'
-__git_complete gcl _git_clone
 alias gcp='git cherry-pick'
-__git_complete gcp _git_cherry_pick
 alias gcpa='git cherry-pick --abort'
 alias gcpc='git cherry-pick --continue'
 alias gd='git diff'
-__git_complete gd _git_diff
 alias gde='git describe --tags'
 alias gdh='git diff HEAD'
 alias gdo='git diff HEAD~1'
@@ -48,14 +51,11 @@ alias gh='git rev-parse HEAD' # (h)ash
 alias gi='git init'
 alias gk='gitk --all'
 alias gl='git log'
-__git_complete gl _git_log
 alias gm='git merge'
-__git_complete gm _git_merge
 alias gp='git pull'
 alias gpu='git push -u origin HEAD'
 alias gpuf='git push -u origin HEAD --force'
 alias gr='git rebase'
-__git_complete gr _git_rebase
 alias gra='git rebase --abort'
 alias grc='git rebase --continue'
 alias grd='git commit --amend --date="$(date)"'
@@ -66,26 +66,13 @@ alias grv='git revert'
 alias grvc='git revert --continue'
 alias gs='git status; git log | head'
 alias gsh='git show'
-__git_complete gsh _git_show
 alias gshs='git show --stat'
-__git_complete gshs _git_show
 alias gt='git tag'
 
 alias gw='./gradlew'
-alias gwe='./gradlew eclipse'
 alias gwc='./gradlew compileJava'
 
-alias dc='docker-compose'
-alias dcp='docker cp'
-alias di='docker images'
-alias dps='docker ps'
-alias dsall='docker stop $(docker ps -a -q)'
-alias drmall='docker rm $(docker ps -a -q)'
-alias drm='docker rm'
-alias drmi='docker image rm'
-alias dup='docker-compose up -d'
-
-function gap {
+function gap() {
     if [ -e $1 ]
     then
         git apply $1
@@ -248,6 +235,14 @@ function dr() {
     docker run -i -t $1 /bin/bash
 }
 
+# Continuously sync the current directory to remote server $1, ssh there, and start tmux session
+function moveto() {
+    rsync -a . root@$1:/root/${PWD##*/}/;
+    fswatch --recursive --one-per-batch . | while read line; do rsync -a . root@$1:/root/${PWD##*/}/; done &
+    ssh -t root@$1 "tmux new 'bash --init-file <(echo \"source venv/bin/activate; cd ${PWD##*/}\")';"
+    fg
+}
+
 # vim keybindings with selected ones from emacs
 set -o vi
 bind -m vi-command ".":insert-last-argument
@@ -257,15 +252,7 @@ bind -m vi-insert "\C-e.":end-of-line
 bind -m vi-insert "\C-w.":backward-kill-word
 bind -m vi-insert "\C-u.":kill-line
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_COMMAND='ag -l --path-to-ignore ~/.gitignore'
-export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-
-if [ -a ~/.bashrc.mine ]
-then
-    source ~/.bashrc.mine
+if command -v sage > /dev/null 2>&1; then
+    alias sagep=$(sage -python -c "import sys; print(sys.executable)")
 fi
-
-. "$HOME/.cargo/env"
-export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 
