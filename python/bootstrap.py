@@ -4,10 +4,10 @@ import re
 import string
 import subprocess
 from Crypto.Util.number import bytes_to_long, isPrime, long_to_bytes
-from base64 import b64decode, b64encode
 from collections import defaultdict
 from hashlib import sha256
 from math import gcd, log, sqrt
+from pwn import b64d, b64e
 
 def call(*commands):
     """ Runs the command in the console.

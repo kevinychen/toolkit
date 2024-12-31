@@ -2,36 +2,38 @@
 
 set -e
 
-function _toolkit_link_file(s) {
-    if [[ -e ~/$s ]]; then
-        if [ "$(stat -f %i $s)" = "$(stat -f %i ~/$s)" ]; then
-            return
+function _toolkit_link_file() {
+    if [[ -e ~/$1 ]]; then
+        if [[ -e ~/$1.bak ]]; then
+            rm ~/$1
         else
-            mv ~/$s ~/$s.bak
+            mv ~/$1 ~/$1.bak
         fi
     fi
-    ln $s ~/$s
+    ln $1 ~/$1
 }
-function _toolkit_copy_dir(s) {
-    if [[ ! -e ~/$s.bak ]]; then
-        mv ~/$s ~/$s.bak
+function _toolkit_copy_dir() {
+    if [[ ! -e ~/$1.bak ]]; then
+        mv ~/$1 ~/$1.bak
     fi
-    cp -r $s ~/$s
+    cp -r $1 ~/$1
 }
-_toolkit_link_file(".bashrc")
-_toolkit_link_file(".gitconfig")
-_toolkit_link_file(".gitignore")
-_toolkit_link_file(".ideavimrc")
-_toolkit_link_file(".tmux.conf")
-_toolkit_link_file(".vimrc")
-_toolkit_copy_dir(".vim")
+_toolkit_link_file .bashrc
+_toolkit_link_file .gitconfig
+_toolkit_link_file .gitignore
+_toolkit_link_file .ideavimrc
+_toolkit_link_file .tmux.conf
+_toolkit_link_file .vimrc
+_toolkit_copy_dir .vim
 
 function _toolkit_setup_vundle() {
-    mkdir ~/.vim/bundle
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    if [ ! -e ~/.vim/bundle ]; then
+        mkdir ~/.vim/bundle
+        git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    fi
     vim +PluginInstall +qall
 }
-_toolkit_setup_vundle()
+_toolkit_setup_vundle
 
 function _toolkit_install_macos() {
     # Install useful things
@@ -75,8 +77,8 @@ function _toolkit_install_macos() {
     defaults write -g ApplePressAndHoldEnabled -bool false
 }
 
-if [ $1 == "macos" ]; then
-    _toolkit_install_macos()
+if [ "$1" = "macos" ]; then
+    _toolkit_install_macos
 fi
 
 source ~/.bashrc

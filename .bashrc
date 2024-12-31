@@ -1,7 +1,7 @@
 export HISTCONTROL="ignoredups:ignorespace"
 export HISTFILESIZE=999999
 export HISTSIZE=999999
-export PS1='\[\e[33;1m\]\u@\h: \[\e[31m\]\W\[\e[0m\]\$ '
+export PS1='\[\e[33;1m\]\h \[\e[31m\]\w\[\e[0m\]\$ '
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
