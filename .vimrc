@@ -66,7 +66,7 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 map m <Plug>(easymotion-s)
 nnoremap -A ggVG
 " -B is hex dump
-nnoremap -B :%!xxd
+nnoremap -B :%!xxd<CR>
 " -c used for comments.vim
 nnoremap -d o<Esc>k
 nnoremap -e :e<CR>

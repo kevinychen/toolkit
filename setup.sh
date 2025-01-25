@@ -19,6 +19,7 @@ function _toolkit_copy_dir() {
     cp -r $1 ~/$1
 }
 _toolkit_link_file .bashrc
+_toolkit_link_file .gdbinit
 _toolkit_link_file .gitconfig
 _toolkit_link_file .gitignore
 _toolkit_link_file .ideavimrc
@@ -53,6 +54,8 @@ function _toolkit_install_macos() {
     brew install --cask ghidra
     brew install --cask jdk-mission-control
     brew install --cask jumpcut
+    brew install --cask licecap
+    brew install --cask lookaway
     brew install --cask paintbrush
     brew install --cask sage
     brew install --cask wireshark
@@ -64,6 +67,10 @@ function _toolkit_install_macos() {
     # Needed for pwntools
     brew install cmake
     brew install pkg-config
+
+    # Install alacritty
+    brew install --cask alacritty
+    cp -r alacritty ~/config/alacritty
 
     # Install vscode
     brew install --cask visual-studio-code

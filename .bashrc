@@ -12,22 +12,26 @@ alias ..='cd ..'
 alias a='fc -s'
 alias f='find . -name'
 alias p='python3'
+alias t='tmux'
+alias co='curl -O'
 alias ll='ls -la'
 alias vb='vim ~/.bashrc'
 alias vd='vimdiff'
 alias grep='grep --color=auto'
 alias load='source ~/.bashrc'
-alias co='curl -O'
+alias binextract='binwalk --dd=".*"'
 
 alias db='docker build .'
+alias ddown='docker-compose stop'
 alias di='docker images'
+alias dl='docker logs'
 alias dps='docker ps'
 alias dr='docker run -i -t --rm'
 alias drm='docker rm'
 alias drmall='docker rm $(docker ps -a -q)'
 alias drmi='docker image rm'
 alias dsall='docker stop $(docker ps -a -q)'
-alias dup='docker-compose up -d'
+alias dup='docker-compose up'
 
 source ~/repos/toolkit/git-completion.bash
 alias ga='git add'
@@ -90,6 +94,7 @@ __git_complete glab _git_branch
 function gron() {
     git rebase --onto $1 HEAD~1 `git rev-parse --abbrev-ref HEAD`
 }
+__git_complete gron _git_rebase
 
 function ged() {
     git rebase -i HEAD~$1
