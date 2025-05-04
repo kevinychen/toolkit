@@ -35,31 +35,38 @@ alias dup='docker-compose up'
 
 source ~/repos/toolkit/git-completion.bash
 alias ga='git add'
+__git_complete ga _git_add
 alias gam='git commit --amend'
 alias gb='git branch'
+__git_complete gb _git_branch
 alias gbl='git blame'
 alias gc='git commit'
 alias gch='git checkout'
+__git_complete gch _git_checkout
 alias gcl='git clone'
 alias gcp='git cherry-pick'
+__git_complete gcp _git_cherry_pick
 alias gcpa='git cherry-pick --abort'
 alias gcpc='git cherry-pick --continue'
 alias gd='git diff'
+__git_complete gd _git_diff
 alias gde='git describe --tags'
 alias gdh='git diff HEAD'
 alias gdo='git diff HEAD~1'
-alias gds='git diff --stat'
 alias gf='git fetch --tags'
 alias gg='git grep'
 alias gh='git rev-parse HEAD' # (h)ash
 alias gi='git init'
 alias gk='gitk --all'
 alias gl='git log'
+__git_complete gl _git_log
 alias gm='git merge'
+__git_complete gm _git_merge
 alias gp='git pull'
 alias gpu='git push -u origin HEAD'
 alias gpuf='git push -u origin HEAD --force'
 alias gr='git rebase'
+__git_complete gr _git_rebase
 alias gra='git rebase --abort'
 alias grc='git rebase --continue'
 alias grd='git commit --amend --date="$(date)"'
@@ -70,7 +77,9 @@ alias grv='git revert'
 alias grvc='git revert --continue'
 alias gs='git status; git log | head'
 alias gsh='git show'
+__git_complete gsh _git_show
 alias gshs='git show --stat'
+__git_complete gshs _git_show
 alias gt='git tag'
 
 alias gw='./gradlew'
