@@ -70,7 +70,7 @@ function _toolkit_install_macos() {
 
     # Install alacritty
     brew install --cask alacritty
-    cp -r alacritty ~/config/alacritty
+    cp -r alacritty ~/.config/alacritty
 
     # Install vscode
     brew install --cask visual-studio-code

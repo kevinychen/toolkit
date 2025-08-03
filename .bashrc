@@ -253,8 +253,24 @@ function dr() {
 function moveto() {
     rsync -a . root@$1:/root/${PWD##*/}/;
     fswatch --recursive --one-per-batch . | while read line; do rsync -a . root@$1:/root/${PWD##*/}/; done &
-    ssh -t root@$1 "tmux new 'bash --init-file <(echo \"source venv/bin/activate; cd ${PWD##*/}\")';"
+    ssh -t root@$1 "tmux new 'bash --init-file <(echo \"source ~/.bashrc; source venv/bin/activate; cd ${PWD##*/}\")';"
     fg
+}
+
+# Returns bytes [start, end) of the file
+function bincarve() {
+    local file="$1"
+    local start="$2"
+    local end="$3"
+
+    if [[ -z "$end" ]]; then
+        # No end: extract from $start to EOF
+        dd if="$file" bs=1 skip="$start" status=none
+    else
+        # End provided: extract from $start to ($end - 1)
+        local count=$((end - start))
+        dd if="$file" bs=1 skip="$start" count="$count" status=none
+    fi
 }
 
 # vim keybindings with selected ones from emacs
