@@ -1,0 +1,8 @@
+*.class
+*.swo
+*.swp
+.apt_generated_tests
+build
+.DS_Store
+*.ignoreme
+.idea

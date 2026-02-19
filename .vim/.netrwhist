@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/kchen/repos'
+let g:netrw_dirhist_2='/Users/kchen/repos/sns-bridge-config'
+let g:netrw_dirhist_3='/Users/kchen/repos'

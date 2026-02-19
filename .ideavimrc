@@ -1,0 +1,4 @@
+set matchpairs+=<:>
+
+unmap m
+map m <Action>(AceAction)
